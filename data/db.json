@@ -1,0 +1,29 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "content": "create todo list",
+      "done": false
+    },
+    {
+      "id": 2,
+      "content": "create todo list item",
+      "done": false
+    },
+    {
+      "id": 3,
+      "content": "filter to do list items",
+      "done": false
+    },
+    {
+      "id": 4,
+      "content": "mark item as done",
+      "done": true
+    },
+    {
+      "id": 5,
+      "content": "delete items",
+      "done": false
+    }
+  ]
+}
