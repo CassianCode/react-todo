@@ -1,10 +1,14 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FC } from 'react';
 import TodoType from '../types';
 import todoService from '../service/todoService';
 import Todo from './Todo/Todo';
 
-const List = () => {
+type FilterProps = {
+  filterPhrase: string;
+};
+
+const List: FC<FilterProps> = ({ filterPhrase }) => {
   // define the types for "todos" state
 
   const [todos, setTodos] = useState<TodoType[]>();
@@ -31,19 +35,26 @@ const List = () => {
     });
   };
 
+  const deleteTodo = (id: number) => {
+    console.log('delete: ', id);
+  };
+
   return (
     <>
       {
         todos &&
-          todos.map((todo) => (
-            <Todo
-              key={todo.id}
-              id={todo.id}
-              content={todo.content}
-              done={todo.done}
-              handleClick={() => toggleDone(todo.id)}
-            />
-          ))
+          todos
+            .filter((todo) => filterPhrase == '' || todo.content.toLowerCase().includes(filterPhrase.toLowerCase()))
+            .map((todo) => (
+              <Todo
+                key={todo.id}
+                id={todo.id}
+                content={todo.content}
+                done={todo.done}
+                handleClick={() => toggleDone(todo.id)}
+                handleDelete={() => deleteTodo(todo.id)}
+              />
+            ))
         // types for todo can be inferred from "TodoType" thanks to defining them above for the "todos" state
 
         // handleClick:

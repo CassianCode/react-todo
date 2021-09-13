@@ -1,4 +1,5 @@
 import React from 'react';
+import { FC } from 'react';
 import styled from '@emotion/styled';
 
 const BaseDeleteSize = 0.8;
@@ -11,6 +12,7 @@ const StyledDelete = styled.div`
   width: ${deleteSize};
   height: ${deleteSize};
   border-radius: ${deleteSize};
+  padding: .4rem;
   font-weight: 600;
   color: #454545;
   background-color: #cdcdcd;
@@ -24,9 +26,13 @@ const StyledDelete = styled.div`
   }
 `;
 
-const Delete = () => {
+type DeleteTypes = {
+  handleDelete: React.MouseEventHandler<HTMLDivElement>;
+}
+
+const Delete:FC<DeleteTypes> = ({ handleDelete }) => {
   return (
-    <StyledDelete>
+    <StyledDelete onClick={handleDelete}>
       &times;
     </StyledDelete>
   );

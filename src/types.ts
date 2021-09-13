@@ -1,7 +1,13 @@
 type TodoType = {
-    id: number;
-    content: string;
-    done: boolean;
-  };
+  id: number;
+  content: string;
+  done: boolean;
+};
 
-  export default TodoType;
+/*
+type FilterType = {
+  filterPhrase: string;
+};
+*/
+
+export default TodoType;

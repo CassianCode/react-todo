@@ -9,6 +9,7 @@ type TodoProps = {
     content: string;
     done: boolean;
     handleClick: React.MouseEventHandler<HTMLDivElement>;
+    handleDelete: React.MouseEventHandler<HTMLDivElement>;
   };
 
 const StyledTodo = styled.div<{done: boolean}>`
@@ -26,15 +27,16 @@ const StyledTodo = styled.div<{done: boolean}>`
   cursor: pointer;
   & p {
     text-decoration: ${props => props.done ? 'line-through' : 'none'};
+    margin-right: 1rem;
   }
 `;
 
 
-const Todo: FC<TodoProps> = ({ id, content, done, handleClick }) => {
+const Todo:FC<TodoProps> = ({ id, content, done, handleClick, handleDelete }) => {
   return (
     <StyledTodo done={done} onClick={handleClick}>
       <p>{content}</p>
-      <Delete />
+      <Delete handleDelete={handleDelete} />
     </StyledTodo>
   );
 };
