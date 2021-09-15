@@ -1,9 +1,17 @@
-import TodoType from '../types';
+import { TodoType } from '../types';
 
 const baseURL = 'http://localhost:3001/todos';
 
 const getAll = () => {
-  return fetch(`${baseURL}`).then((res) => res.json());
+  return fetch(baseURL).then((res) => res.json());
+};
+
+const postTodo = (content: string) => {
+  return fetch(baseURL, {
+    method: 'POST',
+    headers: { 'Content-type': 'application/json' },
+    body: JSON.stringify({ content: content, done: false }),
+  }).then((res) => res.json());
 };
 
 const putDone = (entry: TodoType, id: number) => {
@@ -21,4 +29,4 @@ const deleteTodo = (id: number) => {
   }).then((res) => res.json());
 };
 
-export default { getAll, putDone, deleteTodo };
+export default { getAll, postTodo, putDone, deleteTodo };

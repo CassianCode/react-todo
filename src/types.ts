@@ -1,13 +1,13 @@
-type TodoType = {
+import React from "react";
+
+export type TodoType = {
   id: number;
   content: string;
   done: boolean;
 };
 
-/*
-type FilterType = {
-  filterPhrase: string;
-};
-*/
+export type ButtonType = {
+  title: string;
+  handleClick: React.MouseEventHandler<HTMLButtonElement>;
+}
 
-export default TodoType;

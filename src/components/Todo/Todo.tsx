@@ -5,38 +5,46 @@ import styling from '../styling/styling';
 import Delete from './Delete';
 
 type TodoProps = {
-    id: number;
-    content: string;
-    done: boolean;
-    handleClick: React.MouseEventHandler<HTMLDivElement>;
-    handleDelete: React.MouseEventHandler<HTMLDivElement>;
-  };
+  id: number;
+  content: string;
+  done: boolean;
+  handleClick: React.MouseEventHandler<HTMLDivElement>;
+  handleDelete: React.MouseEventHandler<HTMLDivElement>;
+};
 
-const StyledTodo = styled.div<{done: boolean}>`
+const StyledTodo = styled.div<{ done: boolean }>`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: ${styling.gaps.halfGap};
-  border-radius: 8px;
-  background-color: ${props => props.done ? `#f2f2f2 `: `#fff`};
-  color: ${props => props.done ? `rgba(0, 0, 0, .3)` : `#000`};
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+  border-radius: ${styling.shapes.corner};
+  background-color: ${(props) => (props.done ? styling.colors.stealth : `#fff`)};
+  color: ${(props) => (props.done ? styling.colors.textStealth : `#000`)};
+  box-shadow: ${styling.decoration.shadow};
   margin-bottom: ${styling.gaps.halfGap};
   cursor: pointer;
+  & > div {
+    padding: ${styling.gaps.halfGap};
+  }
+  & > div:first-child {
+    width: 100%;
+  }
   & p {
-    text-decoration: ${props => props.done ? 'line-through' : 'none'};
+    text-decoration: ${(props) => (props.done ? 'line-through' : 'none')};
     margin-right: 1rem;
   }
 `;
 
-
-const Todo:FC<TodoProps> = ({ id, content, done, handleClick, handleDelete }) => {
+const Todo: FC<TodoProps> = ({ id, content, done, handleClick, handleDelete }) => {
   return (
-    <StyledTodo done={done} onClick={handleClick}>
-      <p>{content}</p>
-      <Delete handleDelete={handleDelete} />
+    <StyledTodo done={done}>
+      <div onClick={handleClick}>
+        <p>{content}</p>
+      </div>
+      <div>
+        <Delete handleDelete={handleDelete} />
+      </div>
     </StyledTodo>
   );
 };
