@@ -1,13 +1,14 @@
 import React from 'react';
 import { FC } from 'react';
 import styled from '@emotion/styled';
-import styling from '../styling/styling';
-import Button from '../Button';
+import styling from './styling/styling';
+import Button from './Button';
 
 const StyledCreateInput = styled.textarea`
   border: none;
   background: none;
   resize: none;
+  width: 100%;
   border-radius: ${styling.shapes.corner};
   background-color: ${styling.colors.stealth};
   box-shadow: ${styling.decoration.shadow};
